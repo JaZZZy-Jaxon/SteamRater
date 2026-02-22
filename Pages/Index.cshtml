@@ -1,10 +1,66 @@
 ﻿@page
-@model IndexModel
+@model SteamRater.Pages.SteamIDModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Steam ID";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Steam Account</h1>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+@{
+    var id = Model.Player1.steamid.ToString();
+
+    <p>@id</p>
+}
+
+
+
+@*
+
+@if (Model.SteamID.steamid.ToString().Equals(""))
+{
+    <p>No posts found.</p>
+}
+else
+{
+   
+   
+    
+        
+    
+  
+    <p>@id</p>
+    
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>@post.Id</td>
+                    <td>@post.UserId</td>
+                    <td>@post.Title</td>
+                    <td>@post.Body</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+*@
