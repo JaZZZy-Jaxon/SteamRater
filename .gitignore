@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/
+*.log
+*.tmp
+*.cache
+*.pdb
+*.env
+appsettings.Development.json
