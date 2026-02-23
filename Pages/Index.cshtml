@@ -1,10 +1,8 @@
 ﻿@page
 @model SteamRater.Pages.SteamIDModel
 @{
-    ViewData["Title"] = "Steam ID";
+    ViewData["Title"] = "Steam Games";
 }
-
-<h1>Steam Account</h1>
 
 @if (!ModelState.IsValid)
 {
@@ -17,50 +15,34 @@
 }
 
 @{
-    var id = Model.Player1.steamid.ToString();
-
-    <p>@id</p>
+    var player = Model.PlayerToken.Players[0].personaname;
 }
 
+<h1>@player's Top 5 Games</h1>
 
-
-@*
-
-@if (Model.SteamID.steamid.ToString().Equals(""))
+@if (Model.GamesToken.ToString().Equals(""))
 {
     <p>No posts found.</p>
 }
 else
-{
-   
-   
-    
-        
-    
-  
-    <p>@id</p>
-    
-
+{   
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>User ID</th>
-                <th>Title</th>
-                <th>Body</th>
+                <th>App ID</th>
+                <th>Name</th>
+                <th>Playtime</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var post in Model.Posts)
+            @foreach (var game in Model.GamesToken.Games)
             {
                 <tr>
-                    <td>@post.Id</td>
-                    <td>@post.UserId</td>
-                    <td>@post.Title</td>
-                    <td>@post.Body</td>
+                    <td>@game.appid</td>
+                    <td>@game.name</td>
+                    <td>@game.playtime_forever</td>
                 </tr>
             }
         </tbody>
     </table>
 }
-*@
