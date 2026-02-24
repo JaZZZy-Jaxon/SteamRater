@@ -15,12 +15,12 @@
 }
 
 @{
-    var player = Model.Player.Response.Players[0].personaname;
+    var player = Model.PlayerRequest.Response.Players[0].personaname;
 }
 
 <h1>@player's Top 5 Games</h1>
 
-@if (Model.Games.Response.Games.ToString().Equals(""))
+@if (Model.GamesRequest.Response.Games.ToString().Equals(""))
 {
     <p>No posts found.</p>
 }
@@ -35,7 +35,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var game in Model.Games.Response.Games)
+            @foreach (var game in Model.GamesRequest.Response.Games)
             {
                 <tr>
                     <td>@game.appid</td>

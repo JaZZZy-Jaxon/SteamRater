@@ -4,8 +4,6 @@ namespace SteamRater.Contracts
 {
     public interface ISteamService
     {
-        public Task<Root?> GetPlayers();
-
-        public Task<Root?> GetGames();
+        public Task<Root?> GetAPIResponse(string endpoint);
     }
 }
