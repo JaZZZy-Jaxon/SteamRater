@@ -1,9 +1,14 @@
+using SteamRater.Contracts;
+using SteamRater.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
+
+builder.Services.AddSingleton<ISteamService, SteamService>();
 
 var app = builder.Build();
 
