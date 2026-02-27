@@ -18,7 +18,6 @@ namespace SteamRater.Pages
 
         public Player? player;
         public List<Game>? games;
-        
 
         public async Task OnGetAsync()
         {
