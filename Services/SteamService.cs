@@ -13,14 +13,14 @@ namespace SteamRater.Services
         private readonly IOptions<ApiSettings> _apiSettings;
 
         // API to query steam family share instead of just steam profile owned games (my id: 76561198308578397, Emily: 76561199043218536) 
-        public SteamService(IOptions<ApiSettings> apiSettings)
+        public SteamService(IOptions<ApiSettings> apiSettings, HttpClient httpClient)
         {
             _apiSettings = apiSettings ?? throw new ArgumentNullException(nameof(apiSettings));
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(_apiSettings.Value.BaseUrl)
-            };
+            var baseUrl = _apiSettings.Value.BaseUrl ?? throw new InvalidOperationException("BaseUrl is not configured in appsettings.json");
+
+            _httpClient.BaseAddress = new Uri(baseUrl);
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
@@ -36,7 +36,7 @@ namespace SteamRater.Services
                 PlayerSummary? data = await response.Content.ReadFromJsonAsync<PlayerSummary>(
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                if (data is null)
+                if (data is null || data.Response is null || data.Response.Players is null)
                     return null;
 
                 Player player = data.Response.Players.Single();
@@ -67,7 +67,7 @@ namespace SteamRater.Services
                 OwnedGames? data = await response.Content.ReadFromJsonAsync<OwnedGames>(
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                if (data is null)
+                if (data is null || data.Response is null || data.Response.Games is null)
                     return null;
 
                 List<Game> games = data.Response.Games;

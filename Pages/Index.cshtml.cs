@@ -21,7 +21,7 @@ namespace SteamRater.Pages
 
         public async Task OnGetAsync()
         {
-            string apiKey = _apiSettings.Value.ApiKey;
+            string apiKey = _apiSettings.Value.ApiKey ?? throw new InvalidOperationException("ApiKey is not configured in appsettings.json");
 
             // TODO: Store API key in string variable
             player = await _steamService.GetPlayerSummary("76561198308578397");

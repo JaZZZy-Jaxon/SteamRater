@@ -7,9 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddHttpClient();
-
-builder.Services.AddSingleton<ISteamService, SteamService>();
+builder.Services.AddHttpClient<ISteamService, SteamService>();
 
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 
