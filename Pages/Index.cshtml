@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Steam Games";
+}
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+@{
+    var player = Model.player.personaname;
+    var games = Model.games;
+}
+
+<h1>@player's Top 5 Games</h1>
+
+@if (games is null)
+{
+    <p>No posts found.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>App ID</th>
+                <th>Name</th>
+                <th>Playtime</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in games)
+            {
+                <tr>
+                    <td>@game.appid</td>
+                    <td>@game.name</td>
+                    <td>@game.playtime_forever</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
