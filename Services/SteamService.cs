@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using SteamRater.Contracts;
 using SteamRater.Models;
-using System.Net;
 using System.Text.Json;
 
 namespace SteamRater.Services
@@ -85,5 +84,6 @@ namespace SteamRater.Services
                 return null;
             }
         }
+
     }
 }

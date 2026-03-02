@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient<ISteamService, SteamService>();
+builder.Services.AddHttpClient<ISteamStoreService, SteamStoreService>();
 
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 

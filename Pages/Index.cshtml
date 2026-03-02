@@ -17,6 +17,7 @@
 @{
     var player = Model.player.personaname;
     var games = Model.games;
+    var gameReviews = Model.gameReviews;
 }
 
 <h1>@player's Top 5 Games</h1>
@@ -33,15 +34,17 @@ else
                 <th>App ID</th>
                 <th>Name</th>
                 <th>Playtime</th>
+                <th>Review</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var game in games)
+            @for (int i = 0; i < games.Count; i++)
             {
                 <tr>
-                    <td>@game.appid</td>
-                    <td>@game.name</td>
-                    <td>@game.playtime_forever</td>
+                    <td>@games[i].appid</td>
+                    <td>@games[i].name</td>
+                    <td>@games[i].playtime_forever</td>
+                    <td>@gameReviews[i]</td>
                 </tr>
             }
         </tbody>
