@@ -1,17 +1,7 @@
-﻿@page
-@model IndexModel
+﻿@using SteamRater.Models
+@model IndexViewModel
 @{
     ViewData["Title"] = "Steam Games";
-}
-
-@if (!ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-        {
-            <p>@error.ErrorMessage</p>
-        }
-    </div>
 }
 
 @{

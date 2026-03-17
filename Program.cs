@@ -5,7 +5,7 @@ using SteamRater.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<ISteamService, SteamService>();
 builder.Services.AddHttpClient<ISteamStoreService, SteamStoreService>();
@@ -28,8 +28,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.UseStaticFiles();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Index}/{action=Index}");
 
 app.Run();
